@@ -38,15 +38,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd65725c43f53f4c9d55f398c83d4b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: -1.4868295
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd65725c43f53f4c9d55f398c83d4b1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd65725c43f53f4c9d55f398c83d4b1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: -3.460848
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd65725c43f53f4c9d55f398c83d4b1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -83,6 +83,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3dd65725c43f53f4c9d55f398c83d4b1, type: 3}
       propertyPath: m_Name
       value: Splat_01 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3dd65725c43f53f4c9d55f398c83d4b1, type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dd65725c43f53f4c9d55f398c83d4b1, type: 3}

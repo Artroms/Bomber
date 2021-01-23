@@ -12,8 +12,6 @@ public class Player2AxisController : MonoBehaviour
     private float acceleration;
     private Vector2 oldDirection;
 
-    [SerializeField]private GameObject bomb;
-
 
     private void Start()
     {
@@ -23,9 +21,9 @@ public class Player2AxisController : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
-        oldDirection = Vector2.Lerp(oldDirection, direction * speed, acceleration* Time.deltaTime);
-        controller.SimpleMove(direction.magnitude * transform.forward * speed);
-        animator.SetFloat("InputMagnitude", oldDirection.magnitude);
+        oldDirection = Vector2.Lerp(oldDirection, direction, acceleration * Time.deltaTime);
+        controller.Move(direction.magnitude * transform.forward * speed * Time.deltaTime);
+        animator.SetFloat("InputMagnitude", oldDirection.magnitude * 1.5f);
     }
 
     public void Rotate(Vector2 direction)

@@ -5,18 +5,17 @@ using UnityEngine.Events;
 public class OneKeyController : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
 
-    public Vector2Event onDrag;
+    public UnityEvent<Vector2> onDrag;
     public UnityEvent<bool> onAllowBomb;
 
     public Vector2 deltaNormal;
-    public Vector2 startPos;
 
 
 
     public void OnDrag(PointerEventData data)
     {
         var delta = data.delta;
-        delta.Scale(new Vector2(2f / Screen.width, 2f / Screen.width));
+        delta.Scale(new Vector2(4f / Screen.width, 4f / Screen.width));
         deltaNormal += delta;
     }
 
@@ -27,7 +26,7 @@ public class OneKeyController : MonoBehaviour, IDragHandler, IEndDragHandler, IP
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        onAllowBomb.Invoke(false);
+        onAllowBomb?.Invoke(false);
     }
 
     public void OnPointerUp(PointerEventData eventData)

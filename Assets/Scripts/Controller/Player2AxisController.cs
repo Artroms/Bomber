@@ -22,7 +22,7 @@ public class Player2AxisController : MonoBehaviour
     public void Move(Vector2 direction)
     {
         oldDirection = Vector2.Lerp(oldDirection, direction, acceleration * Time.deltaTime);
-        controller.Move(direction.magnitude * transform.forward * speed * Time.deltaTime);
+        controller.SimpleMove(direction.magnitude * transform.forward * speed);
         animator.SetFloat("InputMagnitude", oldDirection.magnitude * 1.5f);
     }
 

@@ -26,7 +26,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  timer: 1
+  bombSettings: {fileID: 11400000, guid: d212fb4bebd3f254999a52583ab88554, type: 2}
+  effect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
 --- !u!1001 &8954083009135268845
 PrefabInstance:
   m_ObjectHideFlags: 0

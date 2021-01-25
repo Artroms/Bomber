@@ -2,16 +2,29 @@
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
+/// <summary>
+/// UI элемент, имеет события драга и отпускания пальца
+/// </summary>
 public class OneKeyController : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
-
+    /// <summary>
+    /// Событие, вызываемое при драге
+    /// </summary>
     public UnityEvent<Vector2> onDrag;
-    public UnityEvent<bool> onAllowBomb;
+    /// <summary>
+    /// Событие вызываемое при поднятии пальца
+    /// </summary>
+    public UnityEvent<bool> onPointerUp;
+    /// <summary>
+    /// Смещение пальца за время, пока происходит драг
+    /// </summary>
+    private Vector2 deltaNormal;
 
-    public Vector2 deltaNormal;
 
-
-
+    /// <summary>
+    /// Обновляет переменную смещения
+    /// </summary>
+    /// <param name="data"></param>
     public void OnDrag(PointerEventData data)
     {
         var delta = data.delta;
@@ -19,21 +32,36 @@ public class OneKeyController : MonoBehaviour, IDragHandler, IEndDragHandler, IP
         deltaNormal += delta;
     }
 
+    /// <summary>
+    /// Обнуляет переменную смещения
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnEndDrag(PointerEventData eventData)
     {
         deltaNormal = Vector2.zero;
     }
 
+    /// <summary>
+    /// Вызывает события опускания пальца
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerDown(PointerEventData eventData)
     {
-        onAllowBomb?.Invoke(false);
+        onPointerUp?.Invoke(false);
     }
 
+    /// <summary>
+    /// Вызывает событие поднятия пальца
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerUp(PointerEventData eventData)
     {
-        onAllowBomb?.Invoke(true);
+        onPointerUp?.Invoke(true);
     }
 
+    /// <summary>
+    /// Каждый кадр отправляет информацию о смещении в событие onDrag
+    /// </summary>
     private void Update()
     {
         var vec = deltaNormal.magnitude > 1 ? deltaNormal.normalized : deltaNormal;

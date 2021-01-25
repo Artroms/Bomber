@@ -1,18 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Класс для установки бомбы
+/// </summary>
 public class BombPaster : MonoBehaviour
 {
     /// <summary>
     /// Префаб бомбы
     /// </summary>
     [SerializeField] private GameObject bomb;
+    [SerializeField] private GameObject indicator;
     /// <summary>
     /// Ссылка на таймер установки бомбы
     /// </summary>
     private IEnumerator bombTimer;
-
+    /// <summary>
+    /// Настройки бомбы
+    /// </summary>
+    [SerializeField] private BombSettings bombSettings;
+    private float Time => bombSettings.PlantTime;
 
     /// <summary>
     /// Метод вызывающий таймер установки бомбы или обрывающий его
@@ -27,10 +34,11 @@ public class BombPaster : MonoBehaviour
     }
 
     /// <summary>
-    /// Метод активирующий пустышку и включающий таймер установки бомбы
+    /// Метод включающий таймер установки бомбы
     /// </summary>
     private void StartTimer()
     {
+            indicator.SetActive(true);
         if (bombTimer == null)
         {
             bombTimer = BombTimer();
@@ -39,10 +47,11 @@ public class BombPaster : MonoBehaviour
     }
 
     /// <summary>
-    /// Метод скрывающий пустышку и обрывающий таймер
+    /// Метод обрывающий таймер
     /// </summary>
     private void StopTimer()
     {
+        indicator.SetActive(false);
         if (bombTimer != null)
         {
             StopCoroutine(bombTimer);
@@ -51,12 +60,12 @@ public class BombPaster : MonoBehaviour
     }
 
     /// <summary>
-    /// Таймер установки бомбы, ждём некоторое время, скрываем пустышку и ставим бомбу на её место
+    /// Таймер установки бомбы, ждёт некоторое время и ставит бомбу
     /// </summary>
     /// <returns></returns>
     public IEnumerator BombTimer()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(Time);
         var b = Instantiate(bomb);
         b.transform.position = transform.position.GridRound(); // Округлённое местоположение персонажа
         bombTimer = null;

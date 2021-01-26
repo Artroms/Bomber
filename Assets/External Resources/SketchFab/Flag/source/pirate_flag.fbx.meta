@@ -6,6 +6,9 @@ ModelImporter:
   - first:
       74: -7280404215662169675
     second: flag|Action
+  - first:
+      74: 1391358363671884984
+    second: flag|flag|flag|Action|flag|Action
   externalObjects:
   - first:
       type: UnityEngine:Material

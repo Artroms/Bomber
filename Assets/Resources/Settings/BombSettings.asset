@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantTime: 0.5
   timeToExplosion: 1
-  explosionDistance: 4
+  explosionDistance: 2

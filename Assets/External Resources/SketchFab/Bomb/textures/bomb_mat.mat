@@ -151,7 +151,7 @@ Material:
     - _SPECULAR_IOR: 1.5
     - _SPECULAR_ROUGHNESS: 0
     - _Segmented: 1
-    - _Shininess: 0
+    - _Shininess: 0.08
     - _ShnIntense: 0
     - _ShnOverlap: 0
     - _ShnRange: 0.15

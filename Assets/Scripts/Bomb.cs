@@ -92,7 +92,7 @@ public class Bomb : MonoBehaviour
     {
         float count = raycastHit.transform != null ? raycastHit.distance : bombSettings.ExplosionDistance; // узнаём количество эффектов
         direction = raycastHit.transform != null ? (raycastHit.point.GridRound() - transform.position).normalized : direction; // узнаём направление линии
-        for (int i = 1; i < count; i++)
+        for (int i = 1; i < count + 1; i++)
         {
             var pos = transform.position;
             pos += i * direction;

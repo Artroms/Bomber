@@ -64,7 +64,18 @@ public class OneKeyController : MonoBehaviour, IDragHandler, IEndDragHandler, IP
     /// </summary>
     private void Update()
     {
-        var vec = deltaNormal.magnitude > 1 ? deltaNormal.normalized : deltaNormal;
+        var vec = deltaNormal;
+
+#if UNITY_EDITOR
+        vec.x = vec.x == 0? Input.GetAxis("Horizontal"): vec.x;
+        vec.y = vec.y == 0?  Input.GetAxis("Vertical"): vec.y;
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            onPointerUp?.Invoke(true);
+        }
+#endif
+        vec = vec.magnitude > 1 ? vec.normalized : vec;
         onDrag?.Invoke(vec);
     }
 }

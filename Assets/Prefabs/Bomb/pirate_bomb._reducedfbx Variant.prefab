@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ecc96f53ba21d498ef2a85d4b3f163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 100
   bombSettings: {fileID: 11400000, guid: d212fb4bebd3f254999a52583ab88554, type: 2}
   effect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
 --- !u!114 &6058064094847848297

@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Attacker : MonoBehaviour
 {
+    [SerializeField] private int damage = 1;
     /// <summary>
     /// Эффект атаки
     /// </summary>
@@ -19,7 +20,7 @@ public class Attacker : MonoBehaviour
         {
             var health = colliders[i].GetComponent<Health>();
             if (health != null)
-                health.HP--;
+                health.HP -= damage;
         }
         // спавним эффект, если ударили игрока
         if (colliders != null && colliders.Length != 0)

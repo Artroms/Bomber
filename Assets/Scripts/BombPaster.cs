@@ -20,6 +20,7 @@ public class BombPaster : MonoBehaviour
     /// </summary>
     [SerializeField] private BombSettings bombSettings;
     private float Time => bombSettings.PlantTime;
+    private int currentBombCount = 0;
 
     /// <summary>
     /// Метод вызывающий таймер установки бомбы или обрывающий его
@@ -38,7 +39,9 @@ public class BombPaster : MonoBehaviour
     /// </summary>
     private void StartTimer()
     {
-            indicator.SetActive(true);
+        if (currentBombCount >= bombSettings.MaxBombCount) // Проверяем допустимое количество бомб
+            return;
+        indicator.SetActive(true);
         if (bombTimer == null)
         {
             bombTimer = BombTimer();
@@ -66,9 +69,17 @@ public class BombPaster : MonoBehaviour
     public IEnumerator BombTimer()
     {
         yield return new WaitForSeconds(Time);
+        StartCoroutine(BombCounter());
         var b = Instantiate(bomb);
         b.transform.position = transform.position.GridRound(); // Округлённое местоположение персонажа
         bombTimer = null;
         yield break;
+    }
+
+    private IEnumerator BombCounter()
+    {
+        currentBombCount++;
+        yield return new WaitForSeconds(bombSettings.TimeToExplosion);
+        currentBombCount--;
     }
 }

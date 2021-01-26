@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class EnemyAI : MonoBehaviour
 {
+    public float onNearFrequency = 1;
     /// <summary>
     /// —обытие, дл€ отправки направлени€ движени€
     /// </summary>
@@ -33,6 +34,7 @@ public class EnemyAI : MonoBehaviour
         ChangeDirection(); // Ќаходим случайную цель движени€
         StartCoroutine(FindPlayer()); // Ќачинаем провер€ть видимость игрока
         StartCoroutine(FindDirection()); // Ќачинаем мен€ть случайную цель движени€
+        StartCoroutine(PlayerNearRoutine()); // ѕровер€ем рассто€ние до игрока и вызываем событие
     }
 
     // Update is called once per frame
@@ -42,13 +44,6 @@ public class EnemyAI : MonoBehaviour
         if (player != null && found)
         {
             var direction = player.transform.position - transform.position;
-            // если находимс€ близко к игроку, удар€ем его и останавливаемс€
-            if (direction.magnitude < 1)
-            {
-                onPlayerNear?.Invoke();
-                found = false;
-                return;
-            }
             var vec2Dir = new Vector2(direction.x, direction.z);
             vec2Dir = vec2Dir.magnitude > 1 ? vec2Dir.normalized : vec2Dir;
             onPlayerFound.Invoke(vec2Dir);
@@ -136,20 +131,16 @@ public class EnemyAI : MonoBehaviour
     public IEnumerator FindPlayer()
     {
         float wait = 1;
-        while (true)
+        while (true && player != null)
         {
-
-            yield return new WaitForSeconds(wait);
-
-            if (player == null)
-                yield break;
 
             var direction = player.transform.position - transform.position;
 
-            // ≈сли игрок слишком далеко, то ничего не делаем
-            if (direction.magnitude > 15)
+            // ≈сли игрок вне зоны видимости, то ничего не делаем
+            if (Vector3.Angle(transform.forward, direction) > 90 || direction.magnitude > 15)
             {
                 found = false;
+                yield return new WaitForSeconds(wait);
                 continue;
             }
 
@@ -170,7 +161,26 @@ public class EnemyAI : MonoBehaviour
                 }
                 found = false;
             }
+            yield return new WaitForSeconds(wait);
+        }
+    }
 
+    private IEnumerator PlayerNearRoutine()
+    {
+        while(true && player != null)
+        {
+            var direction = player.transform.position - transform.position;
+            // если находимс€ близко к игроку, удар€ем его и останавливаемс€
+            if (direction.magnitude < 1)
+            {
+                onPlayerNear?.Invoke();
+                found = false;
+                yield return new WaitForSeconds(onNearFrequency);
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
 }

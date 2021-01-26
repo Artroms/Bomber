@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BombSettings
   m_EditorClassIdentifier: 
   plantTime: 0.5
-  timeToExplosion: 1
+  timeToExplosion: 2
   explosionDistance: 2
+  maxBombCount: 1

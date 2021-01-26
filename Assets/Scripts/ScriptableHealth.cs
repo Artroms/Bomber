@@ -9,6 +9,7 @@ public class ScriptableHealth : Health
     /// Настройки персонажа
     /// </summary>
     [SerializeField] private CharacterSettings characterSettings;
+    [SerializeField] private HealthBar healthBar;
 
     /// <summary>
     /// Устанавливаем соответствующее здоровье перед первым вызовом Update
@@ -16,5 +17,15 @@ public class ScriptableHealth : Health
     void Start()
     {
         hp = characterSettings.Health;
+        healthBar = Instantiate(healthBar);
+        healthBar.target = transform;
+        healthBar.maxValue = hp;
+        onDamage.AddListener(healthBar.SetHealthInfo);
+    }
+
+
+    private void OnDisable()
+    {
+        healthBar?.gameObject.SetActive(false);
     }
 }

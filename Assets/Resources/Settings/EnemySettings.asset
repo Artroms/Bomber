@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnemySettings
   m_EditorClassIdentifier: 
   speed: 2
-  health: 1
+  health: 100

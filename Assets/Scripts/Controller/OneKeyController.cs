@@ -30,6 +30,7 @@ public class OneKeyController : MonoBehaviour, IDragHandler, IEndDragHandler, IP
         var delta = data.delta;
         delta.Scale(new Vector2(4f / Screen.width, 4f / Screen.width));
         deltaNormal += delta;
+        deltaNormal = deltaNormal.magnitude > 1? deltaNormal.normalized: deltaNormal;
     }
 
     /// <summary>

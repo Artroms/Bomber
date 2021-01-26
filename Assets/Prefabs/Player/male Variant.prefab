@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a212e99e10550584c963df9ad277bdd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 304876374015204987, guid: 2d756b86a93b472409c78b6397463f10, type: 3}
   hp: 1
   onDamage:
     m_PersistentCalls:

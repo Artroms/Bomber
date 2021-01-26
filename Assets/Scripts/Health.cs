@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
         get => hp;
         set
         {
-            onDamage?.Invoke(hp - value); // вызов события нанесения урона
+            onDamage?.Invoke(value); // вызов события нанесения урона
             hp = value;
             if (value <= 0)
                 onDead?.Invoke(); // вызов события отсутствия очков здоровья

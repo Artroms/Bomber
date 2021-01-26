@@ -10,7 +10,7 @@ public class Bomb : MonoBehaviour
     /// <summary>
     /// Наносимый урон
     /// </summary>
-    [SerializeField] private int damage = 1;
+    [SerializeField] private int damage = 100;
     /// <summary>
     /// Настройки бомбы
     /// </summary>
